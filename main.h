@@ -8,10 +8,12 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
+extern char **environ;
+
 void unix_error(char *msg);
 void Execve(char *argv[], char **environ);
 pid_t Fork(void);
 int main(void);
-void which(char **cmd);
+char *which(char **cmd);
 void run(char *input);
 #endif

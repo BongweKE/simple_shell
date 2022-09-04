@@ -1,6 +1,6 @@
 #include "main.h"
 
-/*
+/**
  * Fork - creates somewhat duplicate process of the calling process
  * The new process is called the child process
  *
@@ -8,10 +8,13 @@
  */
 pid_t Fork(void)
 {
-        pid_t pid;
+	pid_t pid;
 
-        if ((pid = fork()) < 0)
-                unix_error("Fork error");
+	pid = fork();
+	if (pid < 0)
+	{
+		unix_error("Fork error");
+	}
 
-        return pid;
+	return (pid);
 }
