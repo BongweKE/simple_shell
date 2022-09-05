@@ -8,6 +8,10 @@
  */
 void unix_error(char *msg)
 {
-	fprintf(stderr, "%s: %s\n", msg, strerror(errno));
-	exit(0);
+	_fprintf(STDERR_FILENO, msg);
+	_fprintf(STDERR_FILENO, ": ");
+	_fprintf(STDERR_FILENO, strerror(errno));
+	_fprintf(STDERR_FILENO, "\n");
+
+	exit(EXIT_FAILURE);
 }

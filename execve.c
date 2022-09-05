@@ -11,11 +11,17 @@ void Execve(char *argv[], char **environ)
 {
 	char *temp;
 
+	if (strcmp(argv[0], "exit") == 0)
+	{
+		if ((kill(0, SIGKILL)) < 0)
+			unix_error("exit failed");
+	}
+
 	strcpy(temp, which(argv));
 
 	if (strcmp(temp, "(nil)") == 0)
 	{
-		unix_error("command not found");
+		unix_error(argv[0]);
 	}
 
 	if (execve(temp, argv, environ) < 0)

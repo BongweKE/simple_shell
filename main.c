@@ -15,17 +15,16 @@ int main(void)
 
 	if (input == NULL)
 	{
-		printf("Unable to allocate buffer");
-		exit(1);
+		unix_error("Unable to allocate buffer");
 	}
-	printf("$ ");
+	_printf("$ ");
 	while ((fetch = getline(&input, &bufsize, stdin)) > 0)
 	{
 		n = Fork();
 		if (n != 0)
 		{
 			wait(NULL);
-			printf("$ ");
+			_printf("$ ");
 		}
 		else
 		{

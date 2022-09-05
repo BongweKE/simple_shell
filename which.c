@@ -19,10 +19,9 @@ char *which(char **cmd)
 
 	path_array = malloc(sizeof(char *) * 20);
 	temp = malloc(sizeof(char) * 100);
-	if (path_array == NULL)
+	if (path_array == NULL || temp == NULL)
 	{
-		fprintf(stderr, "Null malloc error\n");
-		exit(EXIT_FAILURE);
+		unix_error("Null malloc error\n");
 	}
 
 	pth = getenv("PATH");
@@ -43,6 +42,8 @@ char *which(char **cmd)
 		}
 		j++;
 	}
-	fprintf(stderr, "Command '%s' not found\n", cmd[0]);
+
+	_fprintf(STDERR_FILENO, cmd[0]);
+	_fprintf(STDERR_FILENO, ": command not found\n");
 	return ("(nil)");
 }
