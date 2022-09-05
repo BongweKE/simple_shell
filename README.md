@@ -2,7 +2,7 @@
 ___
 #### A simple UNIX command interpreter.
 
-![Main Flowchart](https://github.com/BongweKE/simple_shell/blob/main/imgs/pg%201%20simple_shell-simple%20shell%20ui.drawio.png?raw=true "Flowchart for The User interaction with the shell")
+![Alt](https://github.com/BongweKE/simple_shell/blob/main/imgs/simple_shell.png?raw=true)
 
 ![Build Status](https://img.shields.io/github/directory-file-count/BongweKE/simple_shell?style=flat-square) ![Build Status](https://img.shields.io/github/languages/count/BongweKE/simple_shell?color=red&style=flat-square) ![Build Status](https://img.shields.io/github/languages/top/BongweKE/simple_shell?color=green&style=flat-square)
 
