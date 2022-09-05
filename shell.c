@@ -5,7 +5,7 @@
  * commands to be fed to the shell background
  * @input: the line from shell prompt
  *
- * Description: Utilizes sretok
+ * Description: Utilizes strtok
  * i) We use single space between prompt string to separate the string
  * in the strtok arguments
  * ii) create argv to be the array to hold commands in atomic form
@@ -14,6 +14,7 @@
  * NULL terminated and pass
  * the resultant array argv to which command to check the path of the
  * executable in the given system.
+ * Return: nothing
  */
 void run(char *input)
 {
