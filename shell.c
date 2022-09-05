@@ -14,6 +14,7 @@
  * NULL terminated and pass
  * the resultant array argv to which command to check the path of the
  * executable in the given system.
+ * Return: nothing
  */
 void run(char *input)
 {
