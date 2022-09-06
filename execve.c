@@ -22,7 +22,7 @@ void Execve(char *argv[], char **environ)
 	{
 		unix_error("Malloc error");
 	}
-	
+
 	_strcpy(temp, which(argv));
 
 	if (_strcmp(temp, "(nil)") == 0)
