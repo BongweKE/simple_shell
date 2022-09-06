@@ -7,22 +7,22 @@
  *
  * Return: pointer to first node or NULL
  */
-list_t *create_first_node(list_t *head, const char *str)
+list_t *create_first_node(path_t **head, char *name, char *val)
 {
-	list_t *first;
-	char *s;
+	path_t *first;
+	char *n, *v;
 
-	first = malloc(sizeof(list_t));
-	s = strdup((char *)str);
-	if (first == NULL || s == NULL)
+	first = malloc(sizeof(path_t));
+	n = strdup((char *)str);
+	v = strdup((char *)str);
+	if (first == NULL || n == NULL || v == NULL)
 	{
 		/*  Malloc test and strdup test*/
-		return (NULL);
+		unix_error("Malloc error");
 	}
 
-
-	first->str = s;
-	first->len = _strlen(s);
+	first->name = n;
+	first->val = v;
 	first->next = NULL;
 	head = first;
 	return (head);
@@ -37,7 +37,7 @@ list_t *create_first_node(list_t *head, const char *str)
  *
  * Return: pointer to the element we're looking for
  */
-list_t *find_tail(const list_t *c)
+list_t *find_tail(const path_t *c)
 {
 	if (c == NULL)
 	{
@@ -46,7 +46,7 @@ list_t *find_tail(const list_t *c)
 	}
 	if (c->next == NULL)
 	{
-		return ((list_t *)c);
+		return ((path_t *)c);
 	}
 
 	return (find_tail(c->next));
@@ -66,12 +66,12 @@ list_t *find_tail(const list_t *c)
  * this tail node will now point to our new node and our current node will
  * point to a null since it's the new tail node of the linked list
  */
-path_t *add_node_end(list_t **head, const char *name, char *val)
+path_t *add_node_end(path_t **head, char *name, char *val)
 {
 	char *n, *v;
-	list_t *new_tail, *current_tail;
+	path_t *new_tail, *current_tail;
 
-	new_tail = malloc(sizeof(list_t));
+	new_tail = malloc(sizeof(path_t));
 	n = malloc(sizeof(char) * _strlen(name));
 	v = malloc(sizeof(char) * _strlen(val));
 	if (v == NULL || n == NULL || new_tail == NULL)
