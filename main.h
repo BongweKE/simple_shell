@@ -12,6 +12,23 @@
 
 extern char **environ;
 
+/**
+ * struct path_s - singly linked list
+ * @name: name of path val
+ * @val: val in path
+ * @next: what our node points to
+ *
+ * Description: singly linked list node structure
+ * used to represent our path
+ */
+typedef struct path_s
+{
+	char *name;
+	char *val;
+	struct path_s *next;
+} path_t;
+
+
 void unix_error(char *msg);
 void Execve(char *argv[], char **environ);
 pid_t Fork(void);
