@@ -9,7 +9,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <signal.h>
-
+#include <stddef.h>
 extern char **environ;
 
 /**
@@ -49,5 +49,11 @@ void _fprintf(int fd, char *str);
 void _printf(char *str);
 /* change the above to _printf function if we can't work with them */
 
-
+/*environment*/
+path_t *get_env(path_t *node, char *name);
+path_t *create_path(char **env);
+path_t *add_node_end(path_t **head, char *name, char *val);
+path_t *find_tail(const path_t *c);
+path_t *create_first_node(path_t **head, char *name, char *val);
+char *_getenv(char *name);
 #endif

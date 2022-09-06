@@ -7,14 +7,14 @@
  *
  * Return: pointer to first node or NULL
  */
-list_t *create_first_node(path_t **head, char *name, char *val)
+path_t *create_first_node(path_t **head, char *name, char *val)
 {
 	path_t *first;
 	char *n, *v;
 
 	first = malloc(sizeof(path_t));
-	n = strdup((char *)str);
-	v = strdup((char *)str);
+	n = strdup(name);
+	v = strdup(val);
 	if (first == NULL || n == NULL || v == NULL)
 	{
 		/*  Malloc test and strdup test*/
@@ -24,8 +24,8 @@ list_t *create_first_node(path_t **head, char *name, char *val)
 	first->name = n;
 	first->val = v;
 	first->next = NULL;
-	head = first;
-	return (head);
+	head = &first;
+	return (head[0]);
 }
 
 /**
@@ -37,7 +37,7 @@ list_t *create_first_node(path_t **head, char *name, char *val)
  *
  * Return: pointer to the element we're looking for
  */
-list_t *find_tail(const path_t *c)
+path_t *find_tail(const path_t *c)
 {
 	if (c == NULL)
 	{
@@ -89,7 +89,7 @@ path_t *add_node_end(path_t **head, char *name, char *val)
 	if (*head == NULL)
 	{
 		/* create the first node if head is null */
-		*head = create_first_node(*head, name, val);
+		head[0] = create_first_node(head, name, val);
 		free(new_tail);
 		return (*head);
 	}
@@ -109,18 +109,59 @@ path_t *add_node_end(path_t **head, char *name, char *val)
 }
 
 
-void create_path(char **env)
+path_t *create_path(char **env)
 {
 	int i;
-	char *pth, *name, *val, *head;
+	char *pth, *name, *val; 
+	path_t *head;
 
+	pth = malloc(sizeof(char) * 20);
+	val = malloc(sizeof(char) * 150);/*change later*/
+	if (pth == NULL || val == NULL)
+	{
+		unix_error("Malloc error");
+	}
+	head = NULL;
 	i = 0;
 	while(env[i] != NULL)
 	{
 		_strcpy(pth, env[i]);
 		_strcpy(val, _strchr(pth, '=') + 1);
 		name = strtok(pth, "=");
-		add_node_end(head, name, val);
+		add_node_end(&head, name, val);
 		i++;
 	}
+
+	return(head);
+}
+
+path_t *get_env(path_t *node, char *name)
+{
+	if (_strcmp(node->name, name) == 0)
+	{
+		return (node);
+	}
+
+	if(node->next != NULL)
+	{
+		return (get_env(node->next, name));
+	}
+
+	return (NULL);
+
+}
+
+char *_getenv(char *name)
+{
+	path_t *_environ, *node;
+
+	_environ = create_path(environ);
+	node = get_env(_environ, name);
+
+	if (node != NULL)
+	{
+		return (node->val);
+	}
+
+	return (NULL);
 }

@@ -22,7 +22,7 @@ char *which(char **cmd)
 	if (path_array == NULL || temp == NULL)
 		unix_error("Null malloc error\n");
 
-	pth = getenv("PATH");
+	pth = _getenv("PATH");
 	token = strtok(pth, separator);
 
 	while (token != NULL)

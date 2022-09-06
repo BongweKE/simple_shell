@@ -1,3 +1,4 @@
+#include "main.h"
 /**
  * _strchr - return a pointer to the first occurence of a given char
  * in a given string or NULL if not found
@@ -23,9 +24,8 @@ char *_strchr(char *s, char c)
 		/* on condition we were looking for \0 */
 		return (&s[i]);
 	}
-	else
-	{
-		/* it was not found */
-		return (NULL);
-	}
+
+	/* it was not found */
+	return (NULL);
+
 }
