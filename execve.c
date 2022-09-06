@@ -11,15 +11,21 @@ void Execve(char *argv[], char **environ)
 {
 	char *temp;
 
-	if (strcmp(argv[0], "exit") == 0)
+	if (_strcmp(argv[0], "exit") == 0)
 	{
 		if ((kill(0, SIGKILL)) < 0)
 			unix_error("exit failed");
 	}
 
-	strcpy(temp, which(argv));
+	temp = malloc(sizeof(char) * 100);
+	if (temp == NULL)
+	{
+		unix_error("Malloc error");
+	}
 
-	if (strcmp(temp, "(nil)") == 0)
+	_strcpy(temp, which(argv));
+
+	if (_strcmp(temp, "(nil)") == 0)
 	{
 		unix_error(argv[0]);
 	}
