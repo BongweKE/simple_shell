@@ -17,7 +17,7 @@ int main(void)
 	{
 		unix_error("Unable to allocate buffer");
 	}
-	_printf("$ ");
+	_printf("# ");
 	while ((fetch = getline(&input, &bufsize, stdin)) > 0)
 	{
 		n = Fork();
