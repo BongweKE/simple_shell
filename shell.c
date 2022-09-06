@@ -22,7 +22,7 @@ void run(char *input)
 	const char separator[2] = " ";
 	char **argv;
 	int i = 0;
-
+	
 	token = strtok(input, separator);
 
 	argv = malloc(sizeof(char *) * 20);
