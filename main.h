@@ -35,9 +35,13 @@ pid_t Fork(void);
 int main(void);
 char *which(char **cmd);
 void run(char *input);
+
+/* strings */
 char *_strcpy(char *dest, char *src);
 int _strcmp(char *s1, char *s2);
 char *_strcat(char *dest, char *src, int n);
+char *_strchr(char *s, char c);
+
 /* temporary? printf replacements */
 int _strlen(char *s);
 void Write(int fd, char *str);

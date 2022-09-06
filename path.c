@@ -107,3 +107,20 @@ path_t *add_node_end(path_t **head, char *name, char *val)
 	current_tail->next = new_tail;
 	return (new_tail);
 }
+
+
+void create_path(char **env)
+{
+	int i;
+	char *pth, *name, *val, *head;
+
+	i = 0;
+	while(env[i] != NULL)
+	{
+		_strcpy(pth, env[i]);
+		_strcpy(val, _strchr(pth, '=') + 1);
+		name = strtok(pth, "=");
+		add_node_end(head, name, val);
+		i++;
+	}
+}
