@@ -1,5 +1,5 @@
 /**
- * *_strncat - concatenates 2 strings
+ * _strcat - concatenates 2 strings
  * @dest: destination string
  * @src: source string
  * @n: number of bytes from src
