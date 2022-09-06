@@ -33,7 +33,9 @@ char *which(char **cmd)
 	}
 	while (j < i)
 	{
-		_strcat(_strcat(_strcpy(temp, path_array[j]), "/", 1), cmd[0], _strlen(cmd[0]));
+		_strcat(
+		_strcat(_strcpy(temp, path_array[j]), "/", 1), cmd[0],
+		_strlen(cmd[0]));
 		if (stat(temp, &st) == 0)
 			return (temp);
 		j++;
