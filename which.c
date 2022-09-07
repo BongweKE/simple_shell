@@ -23,7 +23,7 @@ char *which(char **cmd)
 	if (path_array == NULL || temp == NULL)
 		unix_error("Null malloc error\n");
 
-	pth =  _getenv("PATH");
+	_strcpy(pth, _getenv("PATH"));
 	token = strtok(pth, separator);
 
 	while (token != NULL)
@@ -42,7 +42,5 @@ char *which(char **cmd)
 		j++;
 	}
 
-	_fprintf(STDERR_FILENO, cmd[0]);
-	_fprintf(STDERR_FILENO, ": Command not found\n");
 	return ("(nil)");
 }

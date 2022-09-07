@@ -34,7 +34,13 @@ void Execve(char *argv[], char **environ);
 pid_t Fork(void);
 char *which(char **cmd);
 void run(char *input);
+int prompt(void);
+int check_executable(char buffer, char *args[]);
 
+/*shell funcs*/
+void exec_not_found(char **argv);
+char **tokenize(char *input);
+void exec_found(char **argv);
 /* strings */
 char *_strcpy(char *dest, char *src);
 int _strcmp(char *s1, char *s2);
