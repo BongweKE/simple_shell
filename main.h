@@ -32,7 +32,6 @@ typedef struct path_s
 void unix_error(char *msg);
 void Execve(char *argv[], char **environ);
 pid_t Fork(void);
-int main(void);
 char *which(char **cmd);
 void run(char *input);
 
@@ -54,6 +53,6 @@ path_t *get_env(path_t *node, char *name);
 path_t *create_path(char **env);
 path_t *add_node_end(path_t **head, char *name, char *val);
 path_t *find_tail(const path_t *c);
-path_t *create_first_node(path_t **head, char *name, char *val);
-char *_getenv(char *name);
+path_t *create_first_node(path_t *head, char *name, char *val);
+char *_getenv(char *path_name);
 #endif

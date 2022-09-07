@@ -2,7 +2,7 @@
 
 /**
  * which - soemthing
- * @cmd: path
+ * @cmd: the whole prompt to the shell
  *
  * Return: path to executable or (nil)
  */
@@ -19,10 +19,12 @@ char *which(char **cmd)
 
 	path_array = malloc(sizeof(char *) * 20);
 	temp = malloc(sizeof(char) * 100);
+	pth = malloc(sizeof(char) * 100);
 	if (path_array == NULL || temp == NULL)
 		unix_error("Null malloc error\n");
 
-	pth = _getenv("PATH");
+	pth =  _getenv("PATH");
+
 	token = strtok(pth, separator);
 
 	while (token != NULL)
@@ -34,8 +36,8 @@ char *which(char **cmd)
 	while (j < i)
 	{
 		_strcat(
-		_strcat(_strcpy(temp, path_array[j]), "/", 1), cmd[0],
-		_strlen(cmd[0]));
+			_strcat(_strcpy(temp, path_array[j]), "/", 1), cmd[0],
+			_strlen(cmd[0]));
 		if (stat(temp, &st) == 0)
 			return (temp);
 		j++;
