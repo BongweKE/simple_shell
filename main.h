@@ -33,9 +33,11 @@ void unix_error(char *msg);
 void Execve(char *argv[], char **environ);
 pid_t Fork(void);
 char *which(char **cmd);
-void run(char *input);
 int prompt(void);
 int check_executable(char buffer, char *args[]);
+
+/*signals*/
+int Kill(pid_t pid);
 
 /*shell funcs*/
 void exec_not_found(char **argv);

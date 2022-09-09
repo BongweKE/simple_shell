@@ -25,16 +25,21 @@ int prompt(void)
 	{
 		input[_strlen(input) - 1] = '\0';
 		av = tokenize(input);
-		_strcpy(path, which(av));
-		if (_strcmp(path, "(nil)") == 0)
+		if (av[0] != NULL)
 		{
-			exec_not_found(av);
+			_strcpy(path, which(av));
+			if (_strcmp(path, "(nil)") == 0)
+			{
+				exec_not_found(av);
+			}
+			else
+			{
+				av[0] = path;
+				exec_found(av);
+			}
 		}
 		else
-		{
-			av[0] = path;
-			exec_found(av);
-		}
+			_printf("$ ");
 	}
 	return (0);
 }
@@ -76,36 +81,12 @@ void exec_found(char **argv)
 void exec_not_found(char **argv)
 {
 	if (_strcmp(argv[0], "exit") == 0)
-	{
-		if ((kill(0, SIGKILL)) < 0)
-			unix_error("exit failed");
-	}
+		_exit(0);
 
 	_printf(argv[0]);
 	_printf(": command not found");
 	_printf("\n");
 	_printf("$ ");
-}
-
-/**
- * run - take input from the shell prompt and break it down into atomic size of
- * commands to be fed to the shell background
- * @input: the line from shell prompt
- *
- * Description: Utilizes strtok
- * i) We use single space between prompt string to separate the string
- * in the strtok arguments
- * ii) create argv to be the array to hold commands in atomic form
- * and do a malloc check for it
- * iii) after populating it with given args, ensure argv array is
- * NULL terminated and pass
- * the resultant array argv to which command to check the path of the
- * executable in the given system.
- * Return: nothing
- */
-void run(char *input)
-{
-	Execve(tokenize(input), environ);
 }
 
 /**

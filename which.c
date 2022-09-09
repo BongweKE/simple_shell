@@ -10,8 +10,7 @@ char *which(char **cmd)
 {
 	unsigned int i = 0, j = 0;
 	struct stat st;
-	char *pth, *token, **path_array;
-	char *temp;
+	char *pth, *token, **path_array, *temp;
 	const char separator[2] = ":";
 
 	if (stat(cmd[0], &st) == 0)
